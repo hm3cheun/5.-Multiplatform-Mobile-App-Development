@@ -1,4 +1,4 @@
-angular.module('conFusion.controllers', [])
+angular.module('conFusion.controllers', ['ionic'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -150,7 +150,7 @@ angular.module('conFusion.controllers', [])
             };
         }])
 
-        .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', 'baseURL', function($scope, $stateParams, menuFactory, baseURL) {
+        .controller('DishDetailController', ['$scope', '$stateParams', 'favoriteFactory' ,'menuFactory', 'baseURL', '$ionicPopover', function($scope, $stateParams, favoriteFactory ,menuFactory, baseURL, $ionicPopover) {
             $scope.baseURL = baseURL;
             $scope.dish = {};
             $scope.showDish = false;
@@ -166,6 +166,39 @@ angular.module('conFusion.controllers', [])
                                 $scope.message = "Error: "+response.status + " " + response.statusText;
                             }
             );
+
+          //adding popover
+          $ionicPopover.fromTemplateUrl('templates/dish-detail-popover.html', {
+              scope: $scope
+                }).then(function(popover) {
+              $scope.popover = popover;
+              });
+
+
+            $scope.openPopover = function($event) {
+              $scope.popover.show($event);
+            };
+            $scope.closePopover = function() {
+              $scope.popover.hide();
+            };
+
+            $scope.addToFavorite = function () {
+                console.log("index is " + $stateParams.id);
+                favoriteFactory.addToFavorites(parseInt($stateParams.id));
+                $scope.closePopover();
+            };
+            //Cleanup the popover when we're done with it!
+            $scope.$on('$destroy', function() {
+              $scope.popover.remove();
+            });
+            // Execute action on hide popover
+            $scope.$on('popover.hidden', function() {
+              // Execute action
+            });
+            // Execute action on remove popover
+            $scope.$on('popover.removed', function() {
+              // Execute action
+            });
 
 
         }])
