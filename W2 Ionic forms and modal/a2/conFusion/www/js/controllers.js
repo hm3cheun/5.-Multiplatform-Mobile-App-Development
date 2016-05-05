@@ -207,14 +207,19 @@ angular.module('conFusion.controllers', ['ionic'])
                 });
                 $scope.openModal = function() {
                   $scope.modal.show();
+                  $scope.closePopover();
+                };
+                $scope.closeModal = function() {
+                  $scope.modal.hide();
                 };
 
 
         }])
 
-        .controller('DishCommentController', ['$scope', 'menuFactory', function($scope,menuFactory) {
+        .controller('DishCommentController', ['$scope', 'menuFactory','$ionicModal', function($scope,menuFactory,$ionicModal) {
 
             $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+
 
             $scope.submitComment = function () {
 
@@ -227,7 +232,9 @@ angular.module('conFusion.controllers', ['ionic'])
                 $scope.commentForm.$setPristine();
 
                 $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+
             }
+
         }])
 
 
