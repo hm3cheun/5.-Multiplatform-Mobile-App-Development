@@ -261,21 +261,22 @@ angular.module('conFusion.controllers', ['ionic'])
                                 corporateFactory,
                                         baseURL) {
 
-                  $scope.baseURL = baseURL;
-                  $scope.leader = corporateFactory.get({id:3});
-                  $scope.showDish = false;
-                  $scope.message="Loading ...";
-                  $scope.dish = menuFactory.get({id:0})
-                  .$promise.then(
-                      function(response){
-                          $scope.dish = response;
-                          $scope.showDish = true;
-                      },
-                      function(response) {
-                          $scope.message = "Error: "+response.status + " " + response.statusText;
-                      }
-                  );
-                  $scope.promotion = promotionFactory.get({id:0});
+                      $scope.baseURL = baseURL;
+                      $scope.leader = corporateFactory.get({id: 3});
+                      $scope.showDish = false;
+                      $scope.message = "Loading ...";
+                      $scope.dish = menuFactory.get({id:0})
+                                    .$promise.then(
+                                          function (response) {
+                                                $scope.dish = response;
+                                                $scope.showDish = true;
+                                                  },
+                                          function (response) {
+                                                      $scope.message = "Error: " + response.status + " " + response.statusText;
+                                                  }
+                                              );
+
+                            $scope.promotion = promotionFactory.get({id:0});
                 }])
 
         .controller('AboutController', ['$scope', 'corporateFactory','baseURL', function($scope, corporateFactory, baseURL) {
@@ -297,7 +298,7 @@ angular.module('conFusion.controllers', ['ionic'])
                           $scope.shouldShowDelete = false;
                           $scope.favorites = favorites;
                           $scope.dishes = dishes;
-                          /*
+/*
                           $ionicLoading.show({
                                template: '<ion-spinner></ion-spinner> Loading...'
                            });
@@ -315,8 +316,8 @@ angular.module('conFusion.controllers', ['ionic'])
                                   $timeout(function () {
                                        $ionicLoading.hide();
                                    }, 1000);
-                              });*/
-
+                              });
+*/
                           console.log($scope.dishes, $scope.favorites);
 
                               $scope.toggleDelete = function () {
