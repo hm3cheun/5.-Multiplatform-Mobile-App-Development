@@ -24,7 +24,7 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.service
     });
 
     $rootScope.$on('$stateChangeSuccess', function () {
-
+        
         $rootScope.$broadcast('loading:hide');
     });
 
