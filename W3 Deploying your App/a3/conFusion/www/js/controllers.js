@@ -94,7 +94,7 @@ angular.module('conFusion.controllers', ['ionic'])
                     $scope.filtText = "";
                 }
             };
-
+ 
             $scope.addFavorite = function (index) {
                 console.log("index is " + index);
                 favoriteFactory.addToFavorites(index);
