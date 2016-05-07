@@ -8,25 +8,29 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.service
 
 .run(function($ionicPlatform, $rootScope, $ionicLoading) {
 
-    $rootScope.$on('loading:show', function () {
+    $rootScope.$on('loading:show', function () {``
+      console.log('Loading show ...');
         $ionicLoading.show({
             template: '<ion-spinner></ion-spinner> Loading ...'
         })
+
     });
 
     $rootScope.$on('loading:hide', function () {
+        console.log('loading:hide');
+
         $ionicLoading.hide();
+
     });
 
     $rootScope.$on('$stateChangeStart', function () {
-        console.log('Loading ...');
+        console.log('Loading stateChangeStart ...');
         $rootScope.$broadcast('loading:show');
     });
 
     $rootScope.$on('$stateChangeSuccess', function () {
 
         $rootScope.$broadcast('loading:hide');
-
 
     });
 
@@ -64,13 +68,13 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.service
         templateUrl: 'templates/home.html',
           controller: 'IndexController',
           resolve: {
-             l:  ['corporateFactory', function(corporateFactory){
+             leader:  ['corporateFactory', function(corporateFactory){
                  return corporateFactory.get({id:3});
              }],
-             d: ['menuFactory', function(menuFactory){
+             dish: ['menuFactory', function(menuFactory){
                  return menuFactory.get({id:1});
              }],
-             p: ['promotionFactory', function(promotionFactory){
+             promotion: ['promotionFactory', function(promotionFactory){
                  return promotionFactory.get({id:0});
              }]
            }
