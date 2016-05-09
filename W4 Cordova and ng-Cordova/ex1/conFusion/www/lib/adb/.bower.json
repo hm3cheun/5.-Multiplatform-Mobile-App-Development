@@ -1,0 +1,31 @@
+{
+  "name": "adb",
+  "homepage": "https://github.com/johnsonlee/adb",
+  "authors": [
+    "Johnson Lee <g.johnsonlee@gmail.com>"
+  ],
+  "description": "Android Debug Bridge (ADB) Client for Chrome Application",
+  "main": "adb.js",
+  "keywords": [
+    "android",
+    "adb"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "dec1e2d26d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "dec1e2d26d179cf7dafab4619ed480aa5186fdad"
+  },
+  "_source": "https://github.com/johnsonlee/adb.git",
+  "_target": "*",
+  "_originalSource": "adb",
+  "_direct": true
+}
