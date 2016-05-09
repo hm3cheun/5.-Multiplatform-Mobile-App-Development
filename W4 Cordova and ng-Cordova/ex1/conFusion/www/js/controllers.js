@@ -1,6 +1,6 @@
 angular.module('conFusion.controllers', [])
 
-	.controller('AppCtrl', function($scope, $ionicModal, $timeout, $localStorage) {
+	.controller('AppCtrl', function($scope, $ionicModal, $timeout, $localStorage, $cordovaImagePicker) {
 
 		// With the new view caching in Ionic, Controllers are only called
 		// when they are recreated or on app start, instead of every page change.
@@ -10,6 +10,47 @@ angular.module('conFusion.controllers', [])
 		//});
 
 		// Form data for the login modal
+		$scope.registration = {};
+		 $ionicModal.fromTemplateUrl('templates/register.html', {
+        scope: $scope
+    }).then(function (modal) {
+        $scope.registerform = modal;
+    });
+    // Triggered in the registration modal to close it
+    $scope.closeRegister = function () {
+        $scope.registerform.hide();
+    };
+
+    // Open the registration modal
+    $scope.register = function () {
+        $scope.registerform.show();
+    };
+
+    // Perform the registration action when the user submits the registration form
+    $scope.doRegister = function () {
+        // Simulate a registration delay. Remove this and replace with your registration
+        // code if using a registration system
+        $timeout(function () {
+            $scope.closeRegister();
+        }, 1000);
+    };
+
+		$scope.getPicture = function () {
+						$scope.registerform.show();
+							var galleryOptions = {
+								maximumImagesCount: 1,
+								width: 100,
+								height: 100,
+								quality: 50
+							};
+						$cordovaImagePicker.getPictures(galleryOptions).then(function(results){
+							$scope.registration.imgSrc = results[0];
+						}, function(err) {
+							console.log(err);
+						});
+
+		};
+
 		$scope.loginData = $localStorage.getObject('userinfo','{}');
 
 		// Create the login modal that we will use later
@@ -23,6 +64,8 @@ angular.module('conFusion.controllers', [])
 		$scope.closeLogin = function() {
 			$scope.modal.hide();
 		};
+
+
 
 		// Open the login modal
 		$scope.login = function() {

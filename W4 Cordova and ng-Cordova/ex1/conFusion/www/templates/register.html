@@ -9,7 +9,7 @@
     <form ng-submit="doRegister()">
       <div class="list">
        <label class="item item-input">
-       <span class="input-label">Your Picture</span>
+       <span class="input-label">Your Picture {{mes}}</span>
        </label>
        <label class="item item-input">
        <img class="padding" ng-src="{{registration.imgSrc}}">
@@ -19,6 +19,11 @@
             Take Picture
         </button>
         </label>
+        <label class="item item-input">
+        <button class="button button-block button-balanced" type="button" ng-click="getPicture()">
+             Gallery
+         </button>
+         </label>
         <label class="item item-input">
           <span class="input-label">First Name</span>
           <input type="text" ng-model="registration.firstname">
